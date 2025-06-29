@@ -1,0 +1,31 @@
+<h1>Products</h1>
+<%= link_to 'New Product', new_product_path %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Product ID</th>
+    <th>Stocks</th>
+    <th>Price</th>
+    <th>Tax %</th>
+    <th>Actions</th>
+  </tr>
+
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= product.name %></td>
+      <td><%= product.product_id %></td>
+      <td><%= product.available_stocks %></td>
+      <td><%= product.price %></td>
+      <td><%= product.tax_percentage %></td>
+      <td>
+        <%= link_to 'Show', product_path(product) %> |
+        <%= link_to 'Edit', edit_product_path(product) %> 
+      </td>
+    </tr>
+
+  <% end %>
+
+</table>
+
+<%= link_to 'Back to New Bill', new_bill_path, class: "bg-green-600 text-white px-4 py-2 rounded" %>

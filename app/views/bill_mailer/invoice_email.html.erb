@@ -1,0 +1,50 @@
+<h2>Invoice from Your Shop</h2>
+
+<p>
+  <strong>Customer Email:</strong> <%= @bill.customer_email %><br>
+  <strong>Total Amount (₹):</strong> <%= number_to_currency(@bill.total_amount, unit: "₹") %><br>
+  <strong>Paid Amount (₹):</strong> <%= number_to_currency(@bill.paid_amount, unit: "₹") %><br>
+  <strong>Balance Returned (₹):</strong> <%= number_to_currency(@bill.balance_amount, unit: "₹") %>
+</p>
+
+<h3>Purchased Items:</h3>
+<table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+  <thead>
+    <tr style="background-color: #f2f2f2;">
+      <th>Product Name</th>
+      <th>Product ID</th>
+      <th>Quantity</th>
+      <th>Price with Tax (₹)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bill.bill_items.each do |item| %>
+      <tr>
+        <td><%= item.product.name %></td>
+        <td><%= item.product.product_id %></td>
+        <td><%= item.quantity %></td>
+        <td><%= number_to_currency(item.price_with_tax, unit: "₹") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3 style="margin-top: 20px;">Denominations Returned:</h3>
+<table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse; width: 50%;">
+  <thead>
+    <tr style="background-color: #f2f2f2;">
+      <th>Denomination (₹)</th>
+      <th>Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bill.bill_denominations.each do |bd| %>
+      <tr>
+        <td><%= bd.denomination.value %></td>
+        <td><%= bd.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p style="margin-top: 20px;">Thank you for your purchase!</p>

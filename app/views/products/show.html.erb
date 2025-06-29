@@ -1,0 +1,29 @@
+<h1>Product Details</h1>
+
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+
+<p>
+  <strong>Product ID:</strong>
+  <%= @product.product_id %>
+</p>
+
+<p>
+  <strong>Available Stocks:</strong>
+  <%= @product.available_stocks %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  ₹ <%= @product.price %>
+</p>
+
+<p>
+  <strong>Tax Percentage:</strong>
+  <%= @product.tax_percentage %>%
+</p>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back to List', products_path %>

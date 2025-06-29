@@ -1,0 +1,36 @@
+<h2 class="text-2xl mb-4">Purchase History for <%= params[:email] %></h2>
+
+<% if @bills.any? %>
+  <table class="table-auto border border-collapse w-full mb-6">
+    <thead>
+      <tr class="bg-gray-200">
+        <th class="border px-4 py-2">Bill ID</th>
+        <th class="border px-4 py-2">Total Amount (₹)</th>
+        <th class="border px-4 py-2">Paid Amount (₹)</th>
+        <th class="border px-4 py-2">Balance (₹)</th>
+        <th class="border px-4 py-2">Date</th>
+        <th class="border px-4 py-2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @bills.each do |bill| %>
+        <tr>
+          <td class="border px-4 py-2"><%= bill.id %></td>
+          <td class="border px-4 py-2"><%= number_to_currency(bill.total_amount, unit: "₹") %></td>
+          <td class="border px-4 py-2"><%= number_to_currency(bill.paid_amount, unit: "₹") %></td>
+          <td class="border px-4 py-2"><%= number_to_currency(bill.balance_amount, unit: "₹") %></td>
+          <td class="border px-4 py-2"><%= bill.created_at.strftime("%d %b %Y %I:%M %p") %></td>
+          <td class="border px-4 py-2">
+            <%= link_to 'View Bill', bill_path(bill), class: "bg-blue-600 text-white px-2 py-1 rounded" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No purchases found for this customer.</p>
+<% end %>
+
+<div class="mt-4">
+  <%= link_to 'Back to New Bill', new_bill_path, class: "bg-green-600 text-white px-4 py-2 rounded" %>
+</div>
