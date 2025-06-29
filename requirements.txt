@@ -25,4 +25,5 @@ Project Install Instructions
 	rake db:seed
 	
 7) Start the Rails server
+	rails s
 	
