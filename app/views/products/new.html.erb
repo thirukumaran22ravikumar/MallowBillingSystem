@@ -20,8 +20,9 @@
 
   <div>
     <%= form.label :product_id %><br>
-    <%= form.text_field :product_id %>
+    <%= form.text_field :product_id, placeholder: "Enter Product ID" %>
   </div>
+
 
   <div>
     <%= form.label :available_stocks %><br>
@@ -30,7 +31,7 @@
 
   <div>
     <%= form.label :price %><br>
-    <%= form.number_field :price, step: 0.01 %>
+    <%= form.number_field :price, step: 0.01 , placeholder: "Price in float example: 55.0" %>
   </div>
 
   <div>
